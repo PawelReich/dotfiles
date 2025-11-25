@@ -10,6 +10,13 @@ return {
         vim.cmd([[autocmd BufEnter *.tex set conceallevel=1]])
         vim.g.vimtex_compiler_latexmk = {
             aux_dir = vim.fn.stdpath("cache") .. "/vimtex_aux",
+            options = {
+                '-verbose',
+                '-file-line-error',
+                '-synctex=1',
+                '-interaction=nonstopmode',
+                '--shell-escape',
+            }
         }
         -- vim.g.vimtex_quickfix_enabled = 0
         vim.g.vimtex_quickfix_mode = 2
