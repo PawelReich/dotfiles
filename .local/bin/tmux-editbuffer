@@ -4,4 +4,4 @@ tmp_file="$(mktemp)"
 tmux capture-pane -S -
 tmux save-buffer "$tmp_file"
 
-tmux new-window "nvim $tmp_file && tmux load-buffer $tmp_file && tmux delete-buffer && rm $tmp_file"
+tmux new-window "nvim '+normal Go' $tmp_file && tmux delete-buffer && rm $tmp_file"
