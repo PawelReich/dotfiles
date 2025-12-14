@@ -12,6 +12,19 @@
         :width 28
         :orientation "h"))))
 
+(defwidget metric-battery []
+  (box :class "metric metric-battery0, 8(𝑁𝐴2)"
+       :orientation "v"
+       :space-evenly false
+       :valign "fill"
+       :vexpand false
+    (label :class "metric-icon"
+           :text "BAT")
+    (label :class "metric-icon"
+           :text "${EWW_BATTERY["BAT1"].capacity}%")
+    )
+)
+
 (defwidget metric-ram []
   (box :class "metric metric-ram"
        :orientation "v"
@@ -20,27 +33,22 @@
        :vexpand false
     (label :class "metric-icon"
            :text "MEM")
-    (progress
-      :value "${EWW_RAM.used_mem_perc}"
-      :width 28
-      :orientation "h"
-      :tooltip "${round(EWW_RAM.used_mem / 1024 / 1024 / 1024, 1)} / ${round(EWW_RAM.total_mem / 1024 / 1024 / 1024, 1)} GB")))
-
+    (label :class "metric-icon"
+           :text "${round(EWW_RAM.used_mem / 1024 / 1024 / 1024, 1)}G")
+    )
+)
 (defwidget metric-disk []
   (box :class "metric metric-disk"
        :orientation "v"
        :space-evenly false
        :valign "fill"
-       :vexpand false
+       :vexpand true
     (label :class "metric-icon"
-           :text "DISK")
-    (for disk in DISKS
-      (progress
-        :value "${EWW_DISK[disk].used_perc}"
-        :width 28
-        :orientation "h"
-        :tooltip "${disk} - ${round(EWW_DISK[disk].used / 1024 / 1024 / 1024, 0)} / ${round(EWW_DISK[disk].total / 1024 / 1024 / 1024, 0)} GB"))))
-
+           :text "DSK")
+    (label :class "metric-icon"
+           :text "${round(EWW_DISK["/"].used / 1024 / 1024 / 1024, 1)}G")
+    )
+)
 (defwidget time []
   (box :orientation "v"
        :class "time"
@@ -55,11 +63,11 @@
          :vexpand false
       (label :class "metric-icon"
              :text "VOL")
-      (progress
-             :class "${volume_mute ? "inactive" : ""}"
-             :orientation "h"
-             :width 28
-             :value "${volume}"))))
+      (label :class "metric-icon"
+             :text "${volume}%")
+    )
+  )
+)
 
 (defwidget date []
   (tooltip :halign "center"

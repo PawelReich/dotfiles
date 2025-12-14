@@ -26,13 +26,15 @@
        :valign "end"
        :space-evenly false
        :spacing "0"
+    
+    (box :visible "${screen == 0}" (metric-battery))
 
-    (box :visible "${screen == 0 || screens == 1}" (volume))
+    (box :visible "${screen == 0}" (volume))
+    
+    (box :visible "${screen == 0}" (metric-cpu))
 
-    (box :visible "${screen == 0 || screens == 1}" (metric-cpu))
+    (box :visible "${screen == 0}" (metric-ram))
 
-    (box :visible "${screen == 0 || screens == 1}" (metric-ram))
-
-    (box :visible "${screen == 0 || screens == 1}" (metric-disk))
+    (box :visible "${screen == 0}" (metric-disk))
 
     (date)))
