@@ -61,18 +61,9 @@ vim.lsp.config("*", {
     end,
 })
 
--- vim.lsp.config["csharp-language-server"] = {
---     filetypes = { 'cs' },
---     cmd = {'csharp-language-server'},
---     root_dir = vim.fs.dirname(
---       vim.fs.find({ '.sln', '.slnx', '.csproj', '.git' }, { upward = true })[1]
---     )
--- }
-
--- vim.lsp.enable("csharp-language-server")
 vim.lsp.enable("csharp_ls")
 vim.lsp.enable("robotframework_ls")
-vim.lsp.enable("basedpyright")
+vim.lsp.enable("ty")
 vim.lsp.enable("phpactor")
 vim.lsp.enable("clangd")
 vim.lsp.enable("texlab")
