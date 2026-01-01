@@ -4,7 +4,7 @@
 
 output=DP-2
 
-font=Source Code Pro
+font=JetBrainsMono Nerd Font Mono
 format=<b>%a</b> %s\n%b
 sort=-time
 layer=overlay
@@ -13,7 +13,7 @@ background-color=#0d1117
 width=600
 height=128
 border-size=2
-border-color=#a1b56c
+border-color=#8cc85f
 border-radius=8
 icons=1
 max-icon-size=64
@@ -21,7 +21,7 @@ default-timeout=10
 ignore-timeout=0
 
 [urgency=normal]
-border-color=#a1b56c
+border-color=#8cc85f
 
 [urgency=high]
-border-color=#f38ba8
+border-color=#ff5189

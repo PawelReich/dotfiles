@@ -9,7 +9,7 @@ window {
 }
 
 .main-box {
-  background-color: $color_base;
+  background-color: $color_black;
 }
 
 .workspace-entry {
@@ -21,13 +21,13 @@ window {
     color: $color_white;
   }
   &.occupied_diff_disp {
-    color: $color_white;
+    color: $color_blue;
   }
   &.current {
-    color: $color_gitman;
+    color: $color_green;
   }
   &.special {
-    color: $color_lavender;
+    color: $color_blue;
   }
 }
 
@@ -45,7 +45,7 @@ window {
   progressbar {
     outline-offset: 0px;
     outline-width: 0px;
-    background-color: $color_surface0;
+    background-color: $color_black;
     trough {
       min-width: 28px;
       min-height: 8px;
@@ -56,7 +56,7 @@ window {
     }
   }
   progressbar.inactive trough progress {
-    background-color: $color_overlay0;
+    background-color: $color_black;
   }
 
   .metric-text {
@@ -72,7 +72,7 @@ window {
   padding: 4px;
 
   progressbar {
-    background-color: $color_surface0;
+    background-color: $color_black;
     trough {
       min-width: 28px;
       min-height: 8px;
@@ -83,7 +83,7 @@ window {
     }
   }
   progressbar.inactive trough progress {
-    background-color: $color_surface0;
+    background-color: $color_black;
   }
 }
 
@@ -100,7 +100,7 @@ window {
 tooltip,
 .tooltip {
   color: $color_white;
-  background-color: $color_base;
+  background-color: $color_black;
   border-radius: 4px;
   text-shadow: none;
 }

@@ -1,6 +1,6 @@
-font = Source Code Pro
+font = JetBrainsMono Nerd Font Mono
 font-size = 14
-selection-color = #a1b56c
+selection-color = #8cc85f
 selection-match-color = #70e1e8
 width = 100%
 height = 100%
