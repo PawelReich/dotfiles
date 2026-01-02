@@ -43,9 +43,6 @@ if not string match -q "http*" "$giturl"
 end
 
 switch $command
-    case blame
-        git log --pretty=format:"%h by %ae on %ad%n%n%s" -n 1 --date=short $commit_sha
-
     case goto-issue
         set commit_msg (git log --pretty=format:"%s" -n 1 $commit_sha)
 
