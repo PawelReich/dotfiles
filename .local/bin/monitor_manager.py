@@ -32,6 +32,8 @@ def config_monitors(enable_internal : bool, mirror = False):
     config.append(catch_all)
     if not enable_internal:
         config.append("monitor = eDP-1, disabled")
+    else:
+        config.append("monitor = eDP-1, highres, auto, 1.6")
 
     with open(home / '.config/hypr/hyprland-devices.conf', "w+") as f:
         f.write('\n'.join(config))
@@ -50,4 +52,8 @@ if selected == "":
 
 selected_option = next(f for f in options if f[0] == selected)
 selected_option[1]()
+
+subprocess.run("pkill -9 eww", shell=True)
+subprocess.run("eww open bar_0", shell=True)
+
 
