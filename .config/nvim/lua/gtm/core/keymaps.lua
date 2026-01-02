@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
--- Enable mappings
-
 local map = vim.keymap.set
 
 map("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
@@ -28,10 +26,18 @@ map("i", "<C-e>", "<End>", { desc = "move end of line" })
 map("n", "<Tab>","<cmd>BufferLineCycleNext<CR>", {desc = "jump to next buffer" })
 map("n", "<S-Tab>","<cmd>BufferLineCyclePrev<CR>", {desc = "jump to prev buffer" })
 
-map("n", "<C-n>", "<cmd>Neotree position=float toggle=true reveal=true<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
+map("n", "<C-n>", "<cmd>Neotree position=float toggle=true reveal=true<CR>", { desc = "Toggle file explorer" })
 
+map("i", "<C-j>", "<nop>")
+map("i", "<C-k>", "<nop>")
 
--- Open lazygit in new tmux window
+vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Fuzzy find git-files in cwd" })
+vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua git_status<cr>", { desc = "Git status" })
+vim.keymap.set("n", "<leader>fs", "<cmd>FzfLua live_grep_native<cr>", { desc = "Find Files" })
+vim.keymap.set("n", "<leader>fw", "<cmd>FzfLua lsp_live_workspace_symbols<CR>", { desc = "Find symbols" })
+
+vim.keymap.set("n", "s", "<cmd>HopChar2<cr>", { desc = "Hop" })
+
 vim.keymap.set(
   "n",
   "<leader>lg",
@@ -41,15 +47,7 @@ vim.keymap.set(
   { desc = "Lazygit" }
 )
 
--- Disable mappings
-local nomap = vim.keymap.del
-map("i", "<C-j>", "<nop>")
-map("i", "<C-k>", "<nop>")
 
 
-vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Fuzzy find git-files in cwd" })
-vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua git_status<cr>", { desc = "Git status" })
-vim.keymap.set("n", "<leader>fs", "<cmd>FzfLua live_grep_native<cr>", { desc = "Find Files" })
-vim.keymap.set("n", "<leader>fw", "<cmd>FzfLua lsp_live_workspace_symbols<CR>", { desc = "Find symbols" })
 
-vim.keymap.set("n", "s", "<cmd>HopChar2<cr>", { desc = "Hop" })
+
