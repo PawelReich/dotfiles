@@ -1,9 +1,3 @@
---
--- lualine.lua
---
--- Custom status line
---
-
 local function get_last_segment(path)
     local segments = {}
     for segment in string.gmatch(path, "[^/]+") do

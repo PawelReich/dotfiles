@@ -8,7 +8,6 @@ return {
       },
 
       format_on_save = function(bufnr)
-        -- Enable autoformat on certain filetypes
         local format_filetypes = { "cs", "python" }
         if not vim.tbl_contains(format_filetypes, vim.bo[bufnr].filetype) then
           return
@@ -17,8 +16,6 @@ return {
         return { timeout_ms = 500, lsp_format = "prefer" }
       end,
     })
-
-    -- keymaps
 
     vim.keymap.set("n", "<leader>fm", function()
       conform.format({
