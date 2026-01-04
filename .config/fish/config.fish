@@ -16,6 +16,12 @@ if status is-interactive
     alias clip="xsel --clipboard"
     abbr -a fish-reload-config 'source ~/.config/fish/**/*.fish'
 
+    alias icat='kitten icat'
+
+    abbr -a uvv 'uv venv -q --allow-existing --seed; source .venv/bin/activate.fish'
+    abbr -a uvd deactivate
+    alias pip="uv pip"
+
     set -gx EDITOR nvim
 
     set FZF_DEFAULT_OPTS "--color bg:#080808 \
