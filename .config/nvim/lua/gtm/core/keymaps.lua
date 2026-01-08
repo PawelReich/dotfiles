@@ -47,7 +47,20 @@ vim.keymap.set(
   { desc = "Lazygit" }
 )
 
+local function git_helper(action)
+  local script_path = vim.fn.expand("~/.local/bin/git_helper.fish")
 
+  local buffer_name = vim.fn.expand("%:p")
+  local cursor_line = vim.fn.line(".")
 
+  local cmd = string.format("fish %s %s %s %s", script_path, action, buffer_name, cursor_line)
 
+  local output = vim.fn.system(cmd)
 
+  if output and output ~= "" then
+    vim.notify(output, vim.log.levels.INFO)
+  end
+end
+
+vim.keymap.set("n", "<leader>gy", function() git_helper("copy-url") end, { desc = "Copy URL" })
+vim.keymap.set("n", "<leader>go", function() git_helper("goto-issue") end, { desc = "Goto Issue" })
