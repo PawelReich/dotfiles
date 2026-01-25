@@ -67,4 +67,4 @@ vim.lsp.enable("ty")
 vim.lsp.enable("phpactor")
 vim.lsp.enable("clangd")
 vim.lsp.enable("texlab")
-
+vim.lsp.enable("gopls")
