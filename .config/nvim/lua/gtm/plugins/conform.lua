@@ -8,7 +8,7 @@ return {
       },
 
       format_on_save = function(bufnr)
-        local format_filetypes = { "cs", "python" }
+        local format_filetypes = { "cs", "python", "cpp" }
         if not vim.tbl_contains(format_filetypes, vim.bo[bufnr].filetype) then
           return
         end
