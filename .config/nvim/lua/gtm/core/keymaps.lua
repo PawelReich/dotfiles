@@ -64,3 +64,5 @@ end
 
 vim.keymap.set("n", "<leader>gy", function() git_helper("copy-url") end, { desc = "Copy URL" })
 vim.keymap.set("n", "<leader>go", function() git_helper("goto-issue") end, { desc = "Goto Issue" })
+
+vim.keymap.set("x", "<leader>s", '"vy:%s/\\V<C-r>v//g<Left><Left>', { desc = 'Search and Replace Selection' })
