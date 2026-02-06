@@ -4,7 +4,7 @@
 
 output=DP-2
 
-font=JetBrainsMono Nerd Font Mono
+font=FiraCode Nerd Font Mono
 format=<b>%a</b> %s\n%b
 sort=-time
 layer=overlay
