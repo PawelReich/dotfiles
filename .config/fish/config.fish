@@ -13,7 +13,7 @@ if status is-interactive
 
     alias lg='lazygit'
 
-    alias clip="xsel --clipboard"
+    alias clip="wl-copy"
     abbr -a fish-reload-config 'source ~/.config/fish/**/*.fish'
 
     alias icat='kitten icat'
