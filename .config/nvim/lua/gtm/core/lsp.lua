@@ -61,7 +61,6 @@ vim.lsp.config("*", {
     end,
 })
 
-vim.lsp.enable("csharp_ls")
 vim.lsp.enable("robotframework_ls")
 vim.lsp.enable("ty")
 vim.lsp.enable("phpactor")
