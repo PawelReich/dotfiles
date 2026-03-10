@@ -9,25 +9,25 @@ window {
 }
 
 .main-box {
-  background-color: $color_black;
+  background-color: $color_background;
 }
 
 .workspace-entry {
   font-family: PoiretOne;
   font-size: 12px;
-  color: $color_white;
+  color: $color_foreground;
 
   &.occupied {
-    color: $color_white;
+    color: $color_foreground;
   }
   &.occupied_diff_disp {
-    color: $color_blue;
+    color: $color_accent;
   }
   &.current {
-    color: $color_green;
+    color: $color_accent;
   }
   &.special {
-    color: $color_blue;
+    color: $color_accent;
   }
 }
 
@@ -45,18 +45,18 @@ window {
   progressbar {
     outline-offset: 0px;
     outline-width: 0px;
-    background-color: $color_black;
+    background-color: $color_background;
     trough {
       min-width: 28px;
       min-height: 8px;
       progress {
-        background-color: $color_white;
+        background-color: $color_foreground;
         min-height: 8px;
       }
     }
   }
   progressbar.inactive trough progress {
-    background-color: $color_black;
+    background-color: $color_background;
   }
 
   .metric-text {
@@ -72,18 +72,18 @@ window {
   padding: 4px;
 
   progressbar {
-    background-color: $color_black;
+    background-color: $color_background;
     trough {
       min-width: 28px;
       min-height: 8px;
       progress {
-        background-color: $color_white;
+        background-color: $color_foreground;
         min-height: 8px;
       }
     }
   }
   progressbar.inactive trough progress {
-    background-color: $color_black;
+    background-color: $color_background;
   }
 }
 
@@ -99,8 +99,8 @@ window {
 
 tooltip,
 .tooltip {
-  color: $color_white;
-  background-color: $color_black;
+  color: $color_foreground;
+  background-color: $color_background;
   border-radius: 4px;
   text-shadow: none;
 }
