@@ -24,3 +24,8 @@
 
 [diff]
     tool = difftastic
+[commit]
+    verbose = true
+
+[status]
+    submoduleSummary = -1

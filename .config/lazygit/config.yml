@@ -7,8 +7,15 @@ git:
   pagers:
     - externalDiffCommand: difft --display=inline --color=always
     - pager: delta --dark --paging=never --diff-so-fancy
+  autoStageResolvedConflicts: false
 customCommands:
   - key: 'F'
     context: 'files'
     command: 'git-absorb'
     description: 'Absorb staged files'
+  - key: i
+    context: localBranches
+    description: Open issue in browser
+    command: >
+      set ISSUE $(echo "{{ .SelectedLocalBranch.Name }}" | awk -F'-' '{print $1}') &&
+      xdg-open "https://dev.antmicro.com/issues/$ISSUE"
