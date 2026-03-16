@@ -24,6 +24,10 @@
 
 [diff]
     tool = difftastic
+
+[core]
+    excludesFile = ~/.config/.gitignore
+
 [commit]
     verbose = true
 
