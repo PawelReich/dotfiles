@@ -10,7 +10,8 @@
     conflictstyle = zdiff3
 
 [absorb]
-    maxStack=50
+    maxStack=500
+    forceAuthor=true
 
 [rerere]
     enabled = true
