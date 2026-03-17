@@ -1,0 +1,37 @@
+echo "pkoscik .renoderc configuration file init!"
+
+
+python """
+
+# Hacky, but I'm adding each "public" function
+# by hand so I'll be able to print them later
+added_funcs = []
+
+added_funcs.append('logall')
+def mc_logall():
+	# CPUS
+	from Antmicro.Renode.Peripherals.CPU import TranslationCPU
+	cpus = self.Machine.GetPeripheralsOfType(TranslationCPU)
+
+	for cpu in cpus:
+		cpu.LogFunctionNames(True, False, True)
+		print 'Enabled logging for %s'% cpu
+
+	# BUS
+	print 'Enabled logging for SystemBus'
+	monitor.Machine.SystemBus.LogAllPeripheralsAccess(True)
+
+added_funcs.append('tlib_debug')
+def mc_tlib_debug():
+	from Antmicro.Renode.Peripherals.CPU import TranslationCPU
+	cpus = self.Machine.GetPeripheralsOfType(TranslationCPU)
+
+	for cpu in cpus:
+		cpu.MaximumBlockSize = 1
+		cpu.TbCacheEnabled = False
+		print 'Max TB size for %s set to 1. TBC disabled'% cpu
+
+
+print 'Added the following functions:'
+print '\n'.join(str(p) for p in added_funcs) 
+"""

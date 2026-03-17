@@ -39,4 +39,6 @@ if status is-interactive
   --color prompt:#80a0ff \
   --color spinner:#36c692"
 
+
+    set -gx STARTUP_COMMAND include @$HOME/.config/.renoderc
 end
