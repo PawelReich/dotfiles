@@ -1,1 +1,0 @@
-return { 'danymat/neogen' }
