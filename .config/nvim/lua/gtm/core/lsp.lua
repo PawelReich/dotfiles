@@ -58,8 +58,17 @@ vim.lsp.config("*", {
         if client.server_capabilities.documentSymbolProvider then
             require("nvim-navic").attach(client, bufnr)
         end
+        if client:supports_method("textDocument/completion") then
+          vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+        end
     end,
 })
+vim.cmd("set completeopt+=noselect")
+vim.keymap.set("i", "<CR>", function()
+  -- If the popup menu is visible, accept the selection with <C-y>
+  -- Otherwise, just pass a normal <CR>
+  return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>"
+end, { expr = true, desc = "Accept completion" })
 
 vim.lsp.enable("robotframework_ls")
 vim.lsp.enable("ty")
