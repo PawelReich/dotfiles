@@ -36,15 +36,11 @@ vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua git_status<cr>", { desc = "Git st
 vim.keymap.set("n", "<leader>fs", "<cmd>FzfLua live_grep_native<cr>", { desc = "Find Files" })
 vim.keymap.set("n", "<leader>fw", "<cmd>FzfLua lsp_live_workspace_symbols<CR>", { desc = "Find symbols" })
 
-vim.keymap.set("n", "s", "<cmd>HopChar2<cr>", { desc = "Hop" })
-
-vim.keymap.set(
-  "n",
-  "<leader>lg",
-  '<cmd>silent !tmux set -w popup-border-lines rounded; tmux popup -E -eTERM=screen-256color -xC -yC -w90\\% -h90\\% -d "'
-    .. vim.fn.getcwd()
-    .. '" lazygit<cr>',
-  { desc = "Lazygit" }
+vim.keymap.set("n", "<leader>lg",
+    function()
+        open_floating_tool("lazygit")
+    end,
+    { desc = "Lazygit" }
 )
 
 local function git_helper(action)
@@ -66,3 +62,11 @@ vim.keymap.set("n", "<leader>gy", function() git_helper("copy-url") end, { desc 
 vim.keymap.set("n", "<leader>go", function() git_helper("goto-issue") end, { desc = "Goto Issue" })
 
 vim.keymap.set("x", "<leader>s", '"vy:%s/\\V<C-r>v//g<Left><Left>', { desc = 'Search and Replace Selection' })
+    
+vim.keymap.set("n", "<leader>fm", function()
+  require("conform").format({
+    lsp_fallback = true,
+    async = false,
+    timeout_ms = 1000,
+  })
+end, { desc = "Format file" })
