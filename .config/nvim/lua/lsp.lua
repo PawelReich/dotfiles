@@ -59,7 +59,6 @@ vim.lsp.config("*", {
         end
     end,
 })
-vim.cmd("set completeopt+=noselect")
 vim.keymap.set("i", "<CR>", function()
   -- If the popup menu is visible, accept the selection with <C-y>
   -- Otherwise, just pass a normal <CR>

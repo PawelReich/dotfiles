@@ -25,3 +25,5 @@ vim.opt.backup = false
 
 vim.opt.autoread = true
 vim.o.clipboard = "unnamedplus"
+
+vim.opt.completeopt = "menu,menuone,noselect,popup,fuzzy"
