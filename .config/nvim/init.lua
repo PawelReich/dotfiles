@@ -27,6 +27,7 @@ vim.pack.add({
     "https://github.com/ibhagwan/fzf-lua",
     "https://github.com/nvim-lualine/lualine.nvim",
     "https://github.com/nvim-tree/nvim-web-devicons",
+    "https://github.com/rmagatti/auto-session",
 })
 
 -- Theme
@@ -167,6 +168,7 @@ require("lualine").setup({
     extensions = { "toggleterm", "trouble" },
 })
 
+require("auto-session").setup()
 --
 
 require("keymaps")
