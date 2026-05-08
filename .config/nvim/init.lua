@@ -15,7 +15,6 @@ vim.pack.add({
     "https://github.com/nvim-mini/mini.notify",
     "https://github.com/nvim-mini/mini.indentscope",
     "https://github.com/nvim-mini/mini.clue",
-    "https://github.com/seblyng/roslyn.nvim",
     "https://github.com/MeanderingProgrammer/render-markdown.nvim",
     "https://github.com/folke/persistence.nvim",
     "https://github.com/skosulor/nibbler",
