@@ -171,5 +171,61 @@ require("lualine").setup({
 require("auto-session").setup()
 --
 
+vim.pack.add({ "https://github.com/saghen/blink.lib", "https://github.com/saghen/blink.cmp" })
+local cmp = require("blink.cmp")
+-- cmp.build():wait(120000) -- just needs to be ran once
+cmp.setup({
+  keymap = {
+    preset = "none",
+
+    ["<CR>"] = { "select_and_accept", "fallback" },
+    ["<C-n>"] = {
+      "select_next",
+      "snippet_forward",
+      "fallback",
+    },
+    ["<C-p>"] = {
+      "select_prev",
+      "snippet_backward",
+      "fallback",
+    },
+    ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+    ["<C-e>"] = { "hide" },
+    ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+    ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+  },
+
+  appearance = {
+    nerd_font_variant = "mono",
+  },
+
+  cmdline = { enabled = false },
+
+  completion = { documentation = { auto_show = true } },
+
+  sources = { default = { "lsp", "path", "snippets", "buffer" } },
+  -- fuzzy = { implementation = "rust" },
+})
+
+-- Disable default Neovim 0.11+ completion
+vim.o.autocomplete = false
+
+--
+
 require("keymaps")
 require("lsp")
+
+
+vim.api.nvim_create_autocmd('User', { pattern = 'TSUpdate',
+    callback = function()
+        require('nvim-treesitter.parsers').repl = {
+      install_info = {
+        path = "~/code/renode-tree-sitter-repl/",
+        files = {"src/parser.c", "src/scanner.c"},
+        generate_requires_npm = false,
+        requires_generate_from_grammar = false,
+        queries = "queries"
+      },
+      filetype = "repl",
+    }
+end})
