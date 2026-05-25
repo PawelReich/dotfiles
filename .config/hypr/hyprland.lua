@@ -25,14 +25,6 @@ local function float_exec(cmd)
     end
 end
 
--- per-machine monitor config
-local hostname_file = io.open("/proc/sys/kernel/hostname", "r")
-if hostname_file then
-    local hostname = hostname_file:read("*a"):gsub("%s+", "")
-    hostname_file:close()
-    pcall(require, "workstations." .. hostname)
-end
-
 -- environment
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
@@ -281,3 +273,11 @@ hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(home .. "/.local/bin/monitor_manager.
 
 -- password menu
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(home .. "/.local/bin/passmenu.sh"))
+
+-- per-machine config
+local hostname_file = io.open("/proc/sys/kernel/hostname", "r")
+if hostname_file then
+    local hostname = hostname_file:read("*a"):gsub("%s+", "")
+    hostname_file:close()
+    pcall(require, "workstations." .. hostname)
+end
