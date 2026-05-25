@@ -42,16 +42,18 @@ EOF
 # Hyprland
 strip_hash() { echo "${1#\#}"; }
 
-cat <<EOF > ~/.config/hypr/colors.conf
-\$transparent    = rgba(00000000)
-\$background     = rgb($(strip_hash $c_background))
-\$foreground     = rgb($(strip_hash $c_foreground))
-\$cursor         = rgb($(strip_hash $c_foreground))
-\$green          = rgb($(strip_hash $c_green))
-\$blue           = rgb($(strip_hash $c_blue))
-\$black          = rgb($(strip_hash $c_black))
-\$red            = rgb($(strip_hash $c_red))
-\$yellow         = rgb($(strip_hash $c_yellow))
+cat <<EOF > ~/.config/hypr/hyprland-colors.lua
+return {
+    transparent = "rgba(00000000)",
+    background  = "rgba($(strip_hash $c_background)ff)",
+    foreground  = "rgba($(strip_hash $c_foreground)ff)",
+    cursor      = "rgba($(strip_hash $c_cursor)ff)",
+    green       = "rgba($(strip_hash $c_green)ff)",
+    blue        = "rgba($(strip_hash $c_blue)ff)",
+    black       = "rgba($(strip_hash $c_black)ff)",
+    red         = "rgba($(strip_hash $c_red)ff)",
+    yellow      = "rgba($(strip_hash $c_yellow)ff)",
+}
 EOF
 
 # Eww SCSS
