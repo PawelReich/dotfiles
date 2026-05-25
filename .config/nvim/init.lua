@@ -101,7 +101,11 @@ require("neo-tree").setup({
 
 require("fzf-lua").setup({
     hidden = true,
-    cmd = "rg --column --line-number --no-heading --color=always --smart-case --max-columns=4096 --glob '!.git/'",
+    grep = {
+        hidden = true,
+        no_ignore = true,
+        cmd = "rg --column --line-number --no-heading --color=always --smart-case --max-columns=4096 --glob '!.git/'",
+    },
 })
 
 require("bufferline").setup()
