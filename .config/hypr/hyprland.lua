@@ -1,5 +1,6 @@
 local colors = require("hyprland-colors")
 local base = colors.foreground
+local scratchpad = require("hyprland-scratchpad")
 
 -- programs
 local terminal = "kitty"
@@ -7,7 +8,6 @@ local browser = "helium-browser"
 local file_manager = "thunar"
 local menu_drun = "tofi-drun --drun-launch=true --fuzzy-match true"
 local home = os.getenv("HOME")
-local script_scratchpad = home .. "/.config/hypr/scripts/scratchpad"
 local xdg_runtime_dir = os.getenv("XDG_RUNTIME_DIR")
 local ssh_auth_sock = xdg_runtime_dir .. "/ssh-agent.socket"
 
@@ -243,17 +243,9 @@ hl.bind(mainMod .. " + SHIFT + 8", hl.dsp.window.move({ workspace = 8 }))
 hl.bind(mainMod .. " + SHIFT + 9", hl.dsp.window.move({ workspace = 9 }))
 hl.bind(mainMod .. " + SHIFT + 0", hl.dsp.window.move({ workspace = 10 }))
 
--- scratchpad S
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("scratchpad_S"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(script_scratchpad .. " -n scratchpad_S"))
-
--- scratchpad A
-hl.bind(mainMod .. " + A", hl.dsp.workspace.toggle_special("scratchpad_A"))
-hl.bind(mainMod .. " + SHIFT + A", hl.dsp.exec_cmd(script_scratchpad .. " -n scratchpad_A"))
-
--- scratchpad D
-hl.bind(mainMod .. " + D", hl.dsp.workspace.toggle_special("scratchpad_D"))
-hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd(script_scratchpad .. " -n scratchpad_D"))
+scratchpad.setup("scratchpad_S", "S", mainMod)
+scratchpad.setup("scratchpad_A", "A", mainMod)
+scratchpad.setup("scratchpad_D", "D", mainMod)
 
 -- move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
