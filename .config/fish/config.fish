@@ -1,3 +1,8 @@
+# Ensure standard XDG data directories survive nix/flatpak/direnv mangling
+for dir in /usr/local/share /usr/share
+    contains $dir $XDG_DATA_DIRS; or set -a -x XDG_DATA_DIRS $dir
+end
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
