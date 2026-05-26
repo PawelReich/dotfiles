@@ -177,7 +177,6 @@ require("auto-session").setup()
 
 vim.pack.add({ "https://github.com/saghen/blink.lib", "https://github.com/saghen/blink.cmp" })
 local cmp = require("blink.cmp")
--- cmp.build():wait(120000) -- just needs to be ran once
 cmp.setup({
   keymap = {
     preset = "none",
@@ -208,7 +207,7 @@ cmp.setup({
   completion = { documentation = { auto_show = true } },
 
   sources = { default = { "lsp", "path", "snippets", "buffer" } },
-  -- fuzzy = { implementation = "rust" },
+  fuzzy = { implementation = "lua" },
 })
 
 -- Disable default Neovim 0.11+ completion
