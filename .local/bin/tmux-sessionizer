@@ -3,6 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
+    read -t 0.001 -n 10000 2>/dev/null || true
     selected=$(find ~/code ~/code/preich -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
