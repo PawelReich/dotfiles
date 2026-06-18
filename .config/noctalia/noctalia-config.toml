@@ -1,5 +1,5 @@
 [bar.default]
-end = [ "media", "tray", "clipboard", "volume", "brightness", "battery" ]
+end = [ "media", "tray", "clipboard", "volume", "brightness", "battery", "cpu", "ram", "disk" ]
 font_weight = 400
 margin_ends = 0
 position = "left"
@@ -39,8 +39,11 @@ widget_order = [ "lockscreen-login-box@DP-3" ]
         input_radius = 6.0
         show_login_button = true
 
-[plugins]
-enabled = []
+[system.monitor]
+enabled = true
+cpu_poll_seconds = 2.0
+memory_poll_seconds = 2.0
+disk_poll_seconds = 10.0
 
 [shell]
 clipboard_enabled = false
@@ -71,6 +74,20 @@ enabled = false
 
 [widget.clock]
 scale = 1.45
+
+[widget.cpu]
+display = "text"
+stat = "cpu_pct"
+
+[widget.ram]
+display = "text"
+stat = "ram_pct"
+
+[widget.disk]
+type = "sysmon"
+display = "text"
+stat = "disk_pct"
+path = "/"
 
 [widget.media]
 hide_when_no_media = true
