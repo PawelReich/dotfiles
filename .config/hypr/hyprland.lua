@@ -1,12 +1,12 @@
-local colors = require("hyprland-colors")
-local base = colors.foreground
+-- For Noctalia Color templates
+require("noctalia")
+
 local scratchpad = require("hyprland-scratchpad")
 
 -- programs
 local terminal = "kitty"
 local browser = "helium-browser"
 local file_manager = "thunar"
-local menu_drun = "tofi-drun --drun-launch=true --fuzzy-match true"
 local home = os.getenv("HOME")
 local xdg_runtime_dir = os.getenv("XDG_RUNTIME_DIR")
 local ssh_auth_sock = xdg_runtime_dir .. "/ssh-agent.socket"
@@ -42,8 +42,7 @@ hl.env("_JAVA_OPTIONS", "-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true")
 
 -- autostart
 hl.on("hyprland.start", function()
-    hl.exec_cmd("eww open bar_0")
-    hl.exec_cmd("hypridle")
+    hl.exec_cmd("noctalia")
     hl.exec_cmd("hyprsunset")
     hl.exec_cmd("hyprpm reload -n")
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
@@ -74,10 +73,6 @@ hl.config({
         gaps_in = 0,
         gaps_out = 0,
         border_size = 2,
-        col = {
-            active_border = colors.green,
-            inactive_border = colors.black,
-        },
         layout = "master",
         allow_tearing = true,
     },
@@ -92,7 +87,6 @@ hl.config({
         disable_splash_rendering = true,
         force_default_wallpaper = 0,
         mouse_move_enables_dpms = true,
-        background_color = colors.background,
     },
     xwayland = {
         force_zero_scaling = true,
@@ -110,9 +104,13 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 1, bezier = "default
 
 -- layer rules
 hl.layer_rule({
-    name = "blur-launcher",
-    match = { namespace = "launcher" },
+    name = "noctalia",
+    match = {
+        namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$",
+    },
+    ignore_alpha = 0.5,
     blur = true,
+    blur_popups = true,
 })
 hl.layer_rule({
     name = "noanim-hyprpicker",
@@ -134,14 +132,12 @@ hl.window_rule({
 hl.window_rule({
     name = "border-no-floating",
     match = { float = false },
-    border_color = base .. " " .. colors.green .. " " .. base,
     border_size = 2,
     no_shadow = true,
 })
 hl.window_rule({
     name = "special-border-color",
     match = { workspace = "s[true]" },
-    border_color = colors.black .. " " .. colors.blue .. " " .. colors.black,
 })
 hl.window_rule({
     name = "float-windows",
@@ -156,15 +152,15 @@ hl.window_rule({
 
 -- keybinds
 -- media controls
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
-hl.bind("XF86Search", hl.dsp.exec_cmd("launchpad"), { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
+local ipc = "noctalia msg"
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. " volume-up"))
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(ipc .. " volume-down"))
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(ipc .. " volume-mute"))
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set +10%"), { locked = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 10%-"), { locked = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(ipc .. " brightness-up"))
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. " brightness-down"))
 
 -- screenshots
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot --freeze -z -m output"))
@@ -178,7 +174,7 @@ hl.bind(mainMod .. " + SHIFT + Q", function() float_exec(terminal) end)
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(file_manager))
 hl.bind(mainMod .. " + SHIFT + E", function() float_exec(file_manager) end)
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu_drun .. " --prompt-text \"Apps: \""))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
 
 -- layout
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
@@ -186,10 +182,10 @@ hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + CTRL + P", hl.dsp.window.pseudo())
 
 -- screenlock
-hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("noctalia msg session lock"))
 
 -- suspend
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("systemctl suspend && hyprlock"))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("noctalia msg session lock-and-suspend"))
 
 -- move focus with mainMod + hjkl
 hl.bind(mainMod .. " + h", function()
@@ -218,6 +214,18 @@ hl.bind(mainMod .. " + m", function()
     hl.dispatch(hl.dsp.window.cycle_next("prev"))
     hl.dispatch(hl.dsp.window.bring_to_top())
 end)
+
+
+hl.workspace_rule({ workspace = "1", persistent = true })
+hl.workspace_rule({ workspace = "2", persistent = true })
+hl.workspace_rule({ workspace = "3", persistent = true })
+hl.workspace_rule({ workspace = "4", persistent = true })
+hl.workspace_rule({ workspace = "5", persistent = true })
+hl.workspace_rule({ workspace = "6", persistent = true })
+hl.workspace_rule({ workspace = "7", persistent = true })
+hl.workspace_rule({ workspace = "8", persistent = true })
+hl.workspace_rule({ workspace = "9", persistent = true })
+hl.workspace_rule({ workspace = "10", persistent = true })
 
 -- switch workspaces with mainMod + [0-9]
 hl.bind(mainMod .. " + 1", hl.dsp.focus({ workspace = 1 }))

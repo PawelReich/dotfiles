@@ -1,0 +1,79 @@
+[bar.default]
+end = [ "media", "tray", "clipboard", "volume", "brightness", "battery" ]
+font_weight = 400
+margin_ends = 0
+position = "left"
+radius = 0
+shadow = false
+start = [ "workspaces" ]
+widget_spacing = 10
+margin_edge = 0
+
+[lockscreen]
+blurred_desktop = true
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@DP-3" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-3"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 1720.0
+    cy = 1321.0
+    output = "DP-3"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-3".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_login_button = true
+
+[plugins]
+enabled = []
+
+[shell]
+clipboard_enabled = false
+corner_radius_scale = 0.0
+settings_show_advanced = false
+
+    [shell.screenshot]
+    copy_to_clipboard = false
+    freeze_screen = false
+    save_to_file = false
+
+[theme]
+builtin = "Ayu"
+community_palette = "ADW"
+mode = "dark"
+source = "builtin"
+wallpaper_scheme = "m3-content"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "gtk3", "gtk4", "hyprland", "kitty", "qt" ]
+    community_ids = [ "yazi" ]
+
+[wallpaper]
+enabled = false
+
+[weather]
+enabled = false
+
+[widget.clock]
+scale = 1.45
+
+[widget.media]
+hide_when_no_media = true
+
+[widget.workspaces]
+display = "none"

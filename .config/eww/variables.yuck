@@ -1,6 +1,0 @@
-(defvar DISKS '["/"]')
-
-(defvar icon_workspace_active "●")
-(defvar icon_workspace_occupied "○")
-(defvar icon_workspace_occupied_diff_disp "◌")
-(defvar icon_workspace_empty "•")

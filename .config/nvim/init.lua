@@ -12,7 +12,6 @@ vim.pack.add({
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" },
     "https://github.com/stevearc/conform.nvim",
     "https://github.com/lewis6991/gitsigns.nvim",
-    "https://github.com/nvim-mini/mini.base16",
     "https://github.com/nvim-mini/mini.notify",
     "https://github.com/nvim-mini/mini.indentscope",
     "https://github.com/nvim-mini/mini.clue",
@@ -28,26 +27,11 @@ vim.pack.add({
     "https://github.com/nvim-lualine/lualine.nvim",
     "https://github.com/nvim-tree/nvim-web-devicons",
     "https://github.com/rmagatti/auto-session",
+    "https://github.com/RRethy/base16-nvim",
 })
 
 -- Theme
-
-local palette = require("colors")
-require("mini.base16").setup({
-    palette = palette,
-    use_cterm = true,
-})
-local hl = vim.api.nvim_set_hl
-
-hl(0, "TabLineFill", { bg = palette.base00 })
-hl(0, "BufferLineFill", { bg = palette.base00 })
-hl(0, "BufferLineBackground", { bg = "NONE" })
-hl(0, "BufferLineIcon", { bg = "NONE" })
-hl(0, "BufferLineDevIconDefault", { bg = "NONE" })
-hl(0, "BufferLineDevIconDefaultSelected", { bg = "NONE" })
-hl(0, "BufferLineDevIconDefaultInactive", { bg = "NONE" })
-hl(0, "MiniIndentscopeSymbol", { fg = palette.base02 })
-
+require("matugen").setup()
 --
 
 require("nvim-treesitter.config").setup({
