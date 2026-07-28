@@ -34,6 +34,7 @@ map("i", "<C-k>", "<nop>")
 vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Fuzzy find git-files in cwd" })
 vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua git_status<cr>", { desc = "Git status" })
 vim.keymap.set("n", "<leader>fs", "<cmd>FzfLua live_grep_native<cr>", { desc = "Find Files" })
+vim.keymap.set("n", "<leader>fr", "<cmd>FzfLua resume<cr>", { desc = "Resume" })
 vim.keymap.set("n", "<leader>fw", "<cmd>FzfLua lsp_live_workspace_symbols<CR>", { desc = "Find symbols" })
 
 vim.keymap.set("n", "<leader>lg",
