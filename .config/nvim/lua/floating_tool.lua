@@ -1,6 +1,7 @@
 -- https://github.com/kamil-koziol/nvim/blob/main/init.lua
 
-function open_floating_tool(cmd, on_exit_callback)
+function open_floating_tool(cmd, opts)
+  opts = opts or {}
   local buf = vim.api.nvim_create_buf(false, true)
   local width = math.floor(vim.o.columns * 0.9)
   local height = math.floor(vim.o.lines * 0.9)
@@ -16,13 +17,16 @@ function open_floating_tool(cmd, on_exit_callback)
   })
 
   vim.api.nvim_set_option_value(
-    'winhl', 
-    'NormalFloat:Normal,FloatBorder:Normal', 
+    'winhl',
+    'NormalFloat:Normal,FloatBorder:Normal',
     { win = win }
   )
-  -- Use the built-in :terminal command which is the replacement for termopen
-  -- We use 'startinsert' to immediately focus the terminal
-  vim.cmd("terminal " .. cmd)
+
+  local term_opts = {}
+  if opts.cwd then
+    term_opts.cwd = opts.cwd
+  end
+  vim.fn.termopen(cmd, term_opts)
   vim.cmd("startinsert")
 
   -- Track the process to handle the exit callback
@@ -31,8 +35,8 @@ function open_floating_tool(cmd, on_exit_callback)
     callback = function()
       vim.api.nvim_win_close(win, true)
       vim.cmd("bdelete! " .. buf)
-      if on_exit_callback then
-        on_exit_callback()
+      if opts.on_exit then
+        opts.on_exit()
       end
     end,
   })

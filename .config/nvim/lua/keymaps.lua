@@ -38,7 +38,7 @@ vim.keymap.set("n", "<leader>fw", "<cmd>FzfLua lsp_live_workspace_symbols<CR>", 
 
 vim.keymap.set("n", "<leader>lg",
     function()
-        open_floating_tool("lazygit")
+        open_floating_tool("lazygit", { cwd = vim.fn.expand("%:p:h") })
     end,
     { desc = "Lazygit" }
 )
