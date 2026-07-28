@@ -22,6 +22,8 @@ vim.opt.updatetime = 50
 
 vim.opt.swapfile = false
 vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.undofile = true
 
 vim.opt.autoread = true
 vim.o.clipboard = "unnamedplus"
