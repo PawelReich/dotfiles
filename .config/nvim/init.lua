@@ -87,7 +87,7 @@ require("fzf-lua").setup({
     grep = {
         hidden = true,
         no_ignore = true,
-        cmd = "rg --column --line-number --no-heading --color=always --smart-case --max-columns=4096 --glob '!.git/'",
+        cmd = "rg --column --line-number --no-heading --color=always --smart-case --max-columns=4096 --glob '!.git/' --glob '!.venv/'",
     },
 })
 
