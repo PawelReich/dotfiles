@@ -108,6 +108,13 @@ keybinds clear-defaults=true {
         bind "w" { SearchToggleOption "Wrap"; }
     }
     session {
+        bind "Ctrl f" {
+            Run "zellij-sessionizer" {
+                floating true
+                close_on_exit true
+            }
+            SwitchToMode "normal"
+        }
         bind "a" {
             LaunchOrFocusPlugin "zellij:about" {
                 floating true
