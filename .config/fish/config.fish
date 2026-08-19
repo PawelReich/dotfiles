@@ -23,15 +23,7 @@ if status is-interactive
 
     alias icat='kitten icat'
 
-    function t
-        if set -q TMUX
-            tmux popup -T tmux-sessionizer -h40% -E ~/.local/bin/tmux-sessionizer
-        else if tmux has-session 2>/dev/null
-            tmux attach \; run-shell "tmux popup -T tmux-sessionizer -h40% -E ~/.local/bin/tmux-sessionizer"
-        else
-            tmux new-session \; run-shell "tmux popup -T tmux-sessionizer -h40% -E ~/.local/bin/tmux-sessionizer"
-        end
-    end
+    alias zs='zellij-sessionizer'
 
     abbr -a uvv 'uv venv -q --allow-existing --seed; source .venv/bin/activate.fish'
     abbr -a uvd deactivate
